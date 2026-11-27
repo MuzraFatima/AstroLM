@@ -2,6 +2,24 @@
 
 NebulaLM is a from-scratch decoder-only language model for space and astronomy, and a pre-registered study of what a 4.5M–29M model **learns, stores, and leaks** as it trains on repeated text. It is a research repository, not a chat product and not a factual authority.
 
+## Demo
+
+The repository ships a local web interface for trying the models. It uses only the Python
+standard library, binds to `127.0.0.1`, and sends nothing off the machine.
+
+![The NebulaLM web interface](docs/demo/interface.png)
+
+Pick a model, type the start of a sentence, and the model continues it. Temperature, top-k,
+length and sample count are adjustable, greedy decoding is a toggle, and each model's measured
+test bits per byte is shown next to it.
+
+![A generation, with two sampled continuations](docs/demo/generation.png)
+
+> The screenshots above were taken against a small checkpoint trained locally on the sample
+> slice, because the study's trained weights are not distributed with the repository (see
+> [Try the models](#try-the-models)). They show the interface and the full request path, not
+> the output quality of the 29.4M model.
+
 ## Research questions
 
 The primary question is unchanged: under the same corpus, tokenizer, context, and token budget, does the 29.4M model reach lower held-out bits per byte than a 10.3M transformer and a 5-gram model, without pervasive verbatim memorization? The study adds how validation BPB and memorization change with passes (1, 2, 4, 8) and size, and how much exact, edited, and paraphrased near-copies inflate a held-out score. Hypotheses, thresholds, and the multiplicity rules are fixed in the research blueprint and in decisions 004 and 005; a rejected hypothesis is reported as rejected.
@@ -16,6 +34,11 @@ The full write-up is `reports/final_report.md`; the numbers are in `reports/stud
 - **Not supported.** H2a (the 29.4M four-pass cost lands at 2.7% with an interval reaching 3.02%), H3a (its monotonicity part), H2c, and H3c. H1c needs human ratings. H3b, H4, and H5 were not run.
 
 ## Try the models
+
+Trained checkpoints are large and are **not** committed: `runs/` is gitignored, so a fresh
+clone has no weights. Point `NEBULALM_WORK_DIR` at a folder that already holds `runs/`, or
+train one first with `scripts/train.py` or `scripts/run_queue.py`. Without a checkpoint the
+interface exits with `no trained models found under <dir>/runs`.
 
 ```bash
 export NEBULALM_WORK_DIR=/path/to/runs/parent   # the folder that holds runs/
@@ -75,3 +98,10 @@ The authored sample slice from the first milestone still builds with `python scr
 ## Non-goals
 
 Instruction tuning, chat, retrieval, distributed training, and claims about large models are out of scope.
+
+## License
+
+Released under the MIT License — see [LICENSE](LICENSE).
+
+Article text is not redistributed here. Wikipedia content is available under CC BY-SA from
+its source; the manifests in this repository carry identifiers and checksums only.

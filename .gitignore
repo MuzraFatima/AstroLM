@@ -41,3 +41,9 @@ Thumbs.db
 
 # Local working notes (kept out of the repository)
 /worklog/
+
+# Personal deliverables: kept in this folder, never pushed
+/USER_GUIDE.md
+/NebulaLM-Presentation.pptx
+/tools-local/
+/repo-backup/
