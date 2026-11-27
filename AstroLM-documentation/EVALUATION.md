@@ -1,4 +1,4 @@
-# Evaluation Specification — NebulaLM v1
+# Evaluation Specification — AstroLM v1
 
 ## 1. Evaluation layers
 
@@ -100,6 +100,6 @@ The final report includes, for all registered models:
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 5-gram | measured | measured | measured | measured | measured | measured or N/A | N/A | N/A | measured or N/A |
 | smaller transformer | measured | measured | measured | measured | measured | measured | measured | measured | measured |
-| NebulaLM | measured | measured | measured | measured | measured | measured | measured | measured | measured |
+| AstroLM | measured | measured | measured | measured | measured | measured | measured | measured | measured |
 
 No cells may contain estimates presented as results.

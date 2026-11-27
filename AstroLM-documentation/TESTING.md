@@ -1,4 +1,4 @@
-# Correctness and Preflight Testing — NebulaLM v1
+# Correctness and Preflight Testing — AstroLM v1
 
 ## 1. Purpose
 
@@ -88,7 +88,7 @@ On fixed small tensors and copied weights, the project attention/block output an
 - Per-source totals reconcile with the overall total.
 - BPB uses original UTF-8 byte counts under the documented boundary convention.
 - Test evaluation requires an explicit final-evaluation flag and records the invocation.
-- Baseline and NebulaLM evaluators consume identical eligible windows.
+- Baseline and AstroLM evaluators consume identical eligible windows.
 - Memorization metrics pass synthetic exact-copy and non-copy fixtures.
 
 ## 8. Hardware preflight

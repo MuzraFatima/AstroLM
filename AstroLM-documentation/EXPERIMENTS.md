@@ -1,4 +1,4 @@
-# Experiment Registry — NebulaLM v1
+# Experiment Registry — AstroLM v1
 
 This file is an append-oriented template. It contains no experimental results.
 
@@ -82,7 +82,7 @@ Compare 0.10 and 0.20 only if the selected LR pilot shows material train/validat
 
 ### EXP-SCALE: primary transformer comparison
 
-Train the smaller transformer and NebulaLM with the selected tokenizer and controlled valid-token budget. This supplies the primary neural comparison.
+Train the smaller transformer and AstroLM with the selected tokenizer and controlled valid-token budget. This supplies the primary neural comparison.
 
 ### EXP-BUDGET: pass/checkpoint selection
 

@@ -1,14 +1,14 @@
-# Product and Research Requirements — NebulaLM v1
+# Product and Research Requirements — AstroLM v1
 
 ## 1. Purpose
 
-NebulaLM is a from-scratch, decoder-only language model specialized in space and astronomy. It is intended to demonstrate rigorous small-language-model engineering and evaluation under a single-consumer-GPU constraint.
+AstroLM is a from-scratch, decoder-only language model specialized in space and astronomy. It is intended to demonstrate rigorous small-language-model engineering and evaluation under a single-consumer-GPU constraint.
 
 The deliverable is a reproducible research repository and trained base model, not an end-user product.
 
 ## 2. Research question
 
-> Under the same curated training corpus, tokenizer, context length, and measured training-token budget, does the approximately 29M-parameter NebulaLM configuration achieve lower held-out astronomy bits-per-byte than both a 5-gram language model and an approximately 10M-parameter transformer baseline, without pervasive verbatim memorization?
+> Under the same curated training corpus, tokenizer, context length, and measured training-token budget, does the approximately 29M-parameter AstroLM configuration achieve lower held-out astronomy bits-per-byte than both a 5-gram language model and an approximately 10M-parameter transformer baseline, without pervasive verbatim memorization?
 
 This comparison is primary. Tokenizer-size and dropout comparisons are bounded development studies, not additional headline research claims.
 
@@ -81,7 +81,7 @@ All critical tests in `TESTING.md` pass; the full data/tokenizer/config lineage 
 
 The project is complete if it executes the preregistered comparison and reports the outcome honestly. A positive headline result requires all of the following:
 
-1. NebulaLM has lower final test bits-per-byte than both registered baselines under the comparison rules in `EVALUATION.md`.
+1. AstroLM has lower final test bits-per-byte than both registered baselines under the comparison rules in `EVALUATION.md`.
 2. At least 70% of fixed-prompt generations receive both “coherent” and “on-domain” ratings under the frozen rubric.
 3. Fewer than 10% of fixed-prompt generations exhibit a repeated 4-gram loop under the automated degeneration check.
 4. Memorization results are reported, with no evidence that headline qualitative examples were selected from copied training continuations.

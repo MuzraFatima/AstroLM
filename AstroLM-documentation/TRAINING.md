@@ -1,8 +1,8 @@
-# Training Specification — NebulaLM v1
+# Training Specification — AstroLM v1
 
 ## 1. Budget principle
 
-NebulaLM does not target a Chinchilla-derived number of repeated tokens. Repeated passes over a small corpus have diminishing value and increase memorization risk.
+AstroLM does not target a Chinchilla-derived number of repeated tokens. Repeated passes over a small corpus have diminishing value and increase memorization risk.
 
 The final training budget is selected from measured learning curves subject to a wall-clock/thermal budget established on the target machine. Unique corpus tokens, total tokens seen, and number of equivalent corpus passes are always reported separately.
 

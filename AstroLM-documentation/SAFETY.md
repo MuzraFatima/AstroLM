@@ -1,8 +1,8 @@
-# Safety, Limitations, and Release Policy — NebulaLM v1
+# Safety, Limitations, and Release Policy — AstroLM v1
 
 ## 1. Intended use
 
-NebulaLM is a small base language model for demonstrating language-model engineering and studying domain-limited pretraining. Appropriate uses include controlled sampling, pipeline education, and reproducible experiments.
+AstroLM is a small base language model for demonstrating language-model engineering and studying domain-limited pretraining. Appropriate uses include controlled sampling, pipeline education, and reproducible experiments.
 
 It is not intended for factual reference, autonomous publishing, student-facing instruction without review, mission/telescope operations, navigation, safety decisions, or professional scientific analysis.
 

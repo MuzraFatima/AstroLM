@@ -4,7 +4,7 @@ This card describes the sample used to prove the pipeline. It is not the product
 
 ## What is in git
 
-The reproducible sample is authored fixture prose in `src/nebulalm/data/sample_corpus.py`. It includes astronomy notation, exact duplicates, a transitive near-duplicate chain, 50 labeled rejects, and seeded survey-id sentences so byte-level BPE can reach the requested 4,000 and 8,000 vocabularies. Those survey tokens are synthetic identifiers.
+The reproducible sample is authored fixture prose in `src/astrolm/data/sample_corpus.py`. It includes astronomy notation, exact duplicates, a transitive near-duplicate chain, 50 labeled rejects, and seeded survey-id sentences so byte-level BPE can reach the requested 4,000 and 8,000 vocabularies. Those survey tokens are synthetic identifiers.
 
 Measured split of that sample (`reports/data/split_report.json`):
 

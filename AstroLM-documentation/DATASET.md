@@ -1,4 +1,4 @@
-# Dataset Specification — NebulaLM v1
+# Dataset Specification — AstroLM v1
 
 ## 1. Principles
 

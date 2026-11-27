@@ -1,13 +1,13 @@
-# NebulaLM
+# AstroLM
 
-NebulaLM is a from-scratch decoder-only language model for space and astronomy, and a pre-registered study of what a 4.5M–29M model **learns, stores, and leaks** as it trains on repeated text. It is a research repository, not a chat product and not a factual authority.
+AstroLM is a from-scratch decoder-only language model for space and astronomy, and a pre-registered study of what a 4.5M–29M model **learns, stores, and leaks** as it trains on repeated text. It is a research repository, not a chat product and not a factual authority.
 
 ## Demo
 
 The repository ships a local web interface for trying the models. It uses only the Python
 standard library, binds to `127.0.0.1`, and sends nothing off the machine.
 
-![The NebulaLM web interface](docs/demo/interface.png)
+![The AstroLM web interface](docs/demo/interface.png)
 
 Pick a model, type the start of a sentence, and the model continues it. Temperature, top-k,
 length and sample count are adjustable, greedy decoding is a toggle, and each model's measured
@@ -36,12 +36,12 @@ The full write-up is `reports/final_report.md`; the numbers are in `reports/stud
 ## Try the models
 
 Trained checkpoints are large and are **not** committed: `runs/` is gitignored, so a fresh
-clone has no weights. Point `NEBULALM_WORK_DIR` at a folder that already holds `runs/`, or
+clone has no weights. Point `ASTROLM_WORK_DIR` at a folder that already holds `runs/`, or
 train one first with `scripts/train.py` or `scripts/run_queue.py`. Without a checkpoint the
 interface exits with `no trained models found under <dir>/runs`.
 
 ```bash
-export NEBULALM_WORK_DIR=/path/to/runs/parent   # the folder that holds runs/
+export ASTROLM_WORK_DIR=/path/to/runs/parent   # the folder that holds runs/
 export PYTHONPATH=src
 python scripts/web_ui.py                         # opens http://localhost:7860
 python scripts/generate.py --run m0-29m-e8 --prompt "The Andromeda Galaxy is" --samples 3
@@ -63,7 +63,7 @@ English Wikipedia astronomy articles from the pinned `wikimedia/wikipedia` dump 
 |---|---|---:|
 | `configs/model/small_4m.yaml` | 3 / 256 / 4 | 4,483,328 |
 | `configs/model/smaller_transformer.yaml` | 4 / 384 / 6 | 10,268,928 |
-| `configs/model/nebulalm.yaml` | 8 / 512 / 8 | 29,447,168 |
+| `configs/model/astrolm.yaml` | 8 / 512 / 8 | 29,447,168 |
 
 Pre-LayerNorm decoder, exact GELU, learned positions, tied head. Training is FP16 AdamW with a warmup-stable-decay trunk per size and cooldown branches at 1, 2, 4, and 8 passes; checkpoints are atomic, hashed, and resume bit for bit. The run order is `scripts/run_queue.py` (decision 005).
 
@@ -72,8 +72,8 @@ Pre-LayerNorm decoder, exact GELU, learned positions, tied head. Training is FP1
 Everything after collection runs unattended and resumes after an interruption:
 
 ```bash
-export NEBULALM_DATA_DIR=/path/outside/the/repo   # article text, shards, and runs
-export NEBULALM_WORK_DIR=$NEBULALM_DATA_DIR
+export ASTROLM_DATA_DIR=/path/outside/the/repo   # article text, shards, and runs
+export ASTROLM_WORK_DIR=$ASTROLM_DATA_DIR
 python scripts/collect_corpus.py tree pageids     # category tree and page ids
 python scripts/pipeline.py                        # dump, corpus, tokenizer, shards, bundle,
                                                   # benchmark, 5-gram, training queue,
@@ -84,7 +84,7 @@ python scripts/pipeline.py                        # dump, corpus, tokenizer, sha
 
 ## Layout
 
-`src/nebulalm/` holds data, tokenizer, packing, model, training, baselines, and evaluation. `configs/` and `schemas/` are the source of truth for values the code reads. `experiments/` holds dated decisions and registered protocols. Manifests carry checksums and provenance, not article text.
+`src/astrolm/` holds data, tokenizer, packing, model, training, baselines, and evaluation. `configs/` and `schemas/` are the source of truth for values the code reads. `experiments/` holds dated decisions and registered protocols. Manifests carry checksums and provenance, not article text.
 
 ## Checks
 

@@ -1,12 +1,12 @@
-# NebulaLM Master Research Blueprint — 4-Week Edition
+# AstroLM Master Research Blueprint — 4-Week Edition
 
 Oct 29, 2026 · @Farhan Aaqil
 
-A 28-day, laptop-feasible plan that turns NebulaLM from a model-building exercise into a pre-registered study of what a small astronomy language model learns, stores and leaks.
+A 28-day, laptop-feasible plan that turns AstroLM from a model-building exercise into a pre-registered study of what a small astronomy language model learns, stores and leaks.
 
 ## Executive summary
 
-The supplied NebulaLM plan builds a good small astronomy model but asks no research question. This blueprint keeps its model and discipline and adds one: **how much does a 4.5M–29M model learn, store and leak as it trains on repeated text, and how far is its test score inflated by near-duplicates?** It answers with eleven pre-registered hypotheses over a 28-day schedule (Mon 2 Nov to Sun 29 Nov 2026).
+The supplied AstroLM plan builds a good small astronomy model but asks no research question. This blueprint keeps its model and discipline and adds one: **how much does a 4.5M–29M model learn, store and leak as it trains on repeated text, and how far is its test score inflated by near-duplicates?** It answers with eleven pre-registered hypotheses over a 28-day schedule (Mon 2 Nov to Sun 29 Nov 2026).
 
 **Three things are new**
 
@@ -98,7 +98,7 @@ Nineteen papers and five official pages were opened for this blueprint; the near
 
 - Small models are productive under fixed data budgets: [TinyStories](https://arxiv.org/abs/2305.07759) shows coherent text below 10M parameters on curated data, and the [BabyLM findings](https://arxiv.org/abs/2504.08165) report that data-limited training can beat far larger corpora.
 - [Tao et al. 2024](https://arxiv.org/abs/2407.13623v3) argue the best vocabulary grows with compute. That is why the tokenizer sweep covers 4k, 8k and 12k.
-- [AstroSage-Llama-3.1-8B](https://arxiv.org/abs/2411.09012) shows what a large model adapted on astronomy papers can do. NebulaLM asks a different question: what a 4–30M model trained from scratch learns, stores and leaks.
+- [AstroSage-Llama-3.1-8B](https://arxiv.org/abs/2411.09012) shows what a large model adapted on astronomy papers can do. AstroLM asks a different question: what a 4–30M model trained from scratch learns, stores and leaks.
 - Simple English and English Wikipedia are published as aligned article and sentence pairs ([Kauchak simplification datasets](https://cs.pomona.edu/~dkauchak/simplification/), 137K aligned sentence pairs in v1.0). That is the basis for using Simple pages as natural paraphrase siblings.
 
 ### Search protocol and limits
@@ -156,7 +156,7 @@ Five questions, eleven hypotheses; four hypotheses are confirmatory and carry th
 
 ## Proposed study: Learn / Store / Leak
 
-NebulaLM is audited on one set of checkpoints along three axes: what it learns (held-out bits-per-byte), what it stores (memorization readouts), and what its own evaluation leaks (paired probe documents).
+AstroLM is audited on one set of checkpoints along three axes: what it learns (held-out bits-per-byte), what it stores (memorization readouts), and what its own evaluation leaks (paired probe documents).
 
 &#91;embedded content: Learn / Store / Leak design - three lanes, two training variants\]
 
@@ -184,11 +184,11 @@ Four methodological contributions and one resource, each set against a named pri
 
 ### How this differs from the three closest works
 
-**Chudnovsky et al. 2026.** Same scale band and the same worry about repeated text, but they replay exact documents inside a web corpus and read evaluation loss. NebulaLM varies the overlap type, reads paired per-document changes, and uses them to correct the test number.
+**Chudnovsky et al. 2026.** Same scale band and the same worry about repeated text, but they replay exact documents inside a web corpus and read evaluation loss. AstroLM varies the overlap type, reads paired per-document changes, and uses them to correct the test number.
 
-**Morris et al. 2025.** They measure how much a model can memorize, near 3.6 bits per parameter. NebulaLM uses canaries as a calibrated readout inside a natural-text run and treats the capacity curve only as a stretch item (S1) with a pre-stated expectation.
+**Morris et al. 2025.** They measure how much a model can memorize, near 3.6 bits per parameter. AstroLM uses canaries as a calibrated readout inside a natural-text run and treats the capacity curve only as a stretch item (S1) with a pre-stated expectation.
 
-**Nemecek et al. 2026.** A multi-readout memorization audit already exists for genomic models, framed as privacy risk. NebulaLM adopts the multi-readout idea for astronomy text and ties it to evaluation validity, epochs and model size.
+**Nemecek et al. 2026.** A multi-readout memorization audit already exists for genomic models, framed as privacy risk. AstroLM adopts the multi-readout idea for astronomy text and ties it to evaluation validity, epochs and model size.
 
 **Not claimed:** a new scaling law; results that transfer to large models; privacy guarantees; that Simple-Wikipedia paraphrases represent all paraphrase leakage; or that WSD matches cosine everywhere (a 10.3M cosine check, EXP-SCHED, tests it here).
 
@@ -559,4 +559,4 @@ Verify these before citing: Kaplan et al. 2020 (scaling laws); Hoffmann et al. 2
 
 ## Attribution and originality
 
-The model, corpus plan and 30-day schedule come from the supplied NebulaLM documentation set; this blueprint keeps its architecture, evaluation discipline and "no estimate presented as result" rule, and changes what the study is about, how data are sourced and how the 28 days are used (see the findings table). The structure follows the supplied GateOrchestra blueprint. The Learn / Store / Leak framing, the paired M0/M1 leak probe, LA-BPB and the WSD branch grid are proposed here as a design; none has been run, and every number in the compute and power sections is an estimate or simulation under stated assumptions. Ratings in the scorecard are my own rubric-based self-assessment, not an external review. Wikipedia text is CC BY-SA 4.0; the plan releases manifests, code and results, not the corpus.
+The model, corpus plan and 30-day schedule come from the supplied AstroLM documentation set; this blueprint keeps its architecture, evaluation discipline and "no estimate presented as result" rule, and changes what the study is about, how data are sourced and how the 28 days are used (see the findings table). The structure follows the supplied GateOrchestra blueprint. The Learn / Store / Leak framing, the paired M0/M1 leak probe, LA-BPB and the WSD branch grid are proposed here as a design; none has been run, and every number in the compute and power sections is an estimate or simulation under stated assumptions. Ratings in the scorecard are my own rubric-based self-assessment, not an external review. Wikipedia text is CC BY-SA 4.0; the plan releases manifests, code and results, not the corpus.

@@ -1,4 +1,4 @@
-# NebulaLM: what a 4.5M–29M astronomy model learns, stores, and leaks
+# AstroLM: what a 4.5M–29M astronomy model learns, stores, and leaks
 
 Final report, 2026-11-14. Every number below comes from `reports/study/results.json`, `reports/study/h1a_seed_robustness.json`, `reports/training/runs.json`, or the per-run audits, and each run is traceable by its checkpoint hash. Hypotheses, thresholds, and multiplicity rules were fixed before training (research blueprint, decisions 004–006). A rejected hypothesis is reported as rejected.
 
@@ -84,4 +84,4 @@ Because the benefit is almost flat across overlap levels, a correction proportio
 
 ## Reproduction
 
-`python scripts/collect_corpus.py tree pageids`, then `python scripts/pipeline.py`, with `NEBULALM_DATA_DIR` and `NEBULALM_WORK_DIR` pointing outside the repository. The pipeline skips finished stages and resumes interrupted runs. `scripts/audit_checkpoint.py --run <run>` reproduces any row of the Store and Leak tables from its checkpoint.
+`python scripts/collect_corpus.py tree pageids`, then `python scripts/pipeline.py`, with `ASTROLM_DATA_DIR` and `ASTROLM_WORK_DIR` pointing outside the repository. The pipeline skips finished stages and resumes interrupted runs. `scripts/audit_checkpoint.py --run <run>` reproduces any row of the Store and Leak tables from its checkpoint.

@@ -1,8 +1,8 @@
-# Tokenizer Specification — NebulaLM v1
+# Tokenizer Specification — AstroLM v1
 
 ## 1. Required design
 
-NebulaLM uses a lossless byte-level BPE tokenizer implemented with Hugging Face `tokenizers`. The tokenizer is a preprocessing dependency; model architecture and weights remain project implementations trained from scratch.
+AstroLM uses a lossless byte-level BPE tokenizer implemented with Hugging Face `tokenizers`. The tokenizer is a preprocessing dependency; model architecture and weights remain project implementations trained from scratch.
 
 The tokenizer trainer may read **training-split text only**. Validation, test, and challenge material are forbidden inputs to vocabulary or merge learning.
 

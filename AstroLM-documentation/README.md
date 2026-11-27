@@ -1,8 +1,8 @@
-# NebulaLM
+# AstroLM
 
-NebulaLM is a decoder-only transformer language model trained from random initialization on a curated, licensed corpus of space and astronomy text. Version 1 targets approximately 29 million parameters, a 256-token context window, and training on one local RTX 3050-class GPU.
+AstroLM is a decoder-only transformer language model trained from random initialization on a curated, licensed corpus of space and astronomy text. Version 1 targets approximately 29 million parameters, a 256-token context window, and training on one local RTX 3050-class GPU.
 
-NebulaLM is a base language model and an educational/research portfolio project. It is not a chat assistant, factual reference, or substitute for verified astronomy sources.
+AstroLM is a base language model and an educational/research portfolio project. It is not a chat assistant, factual reference, or substitute for verified astronomy sources.
 
 ## Project objective
 
@@ -11,7 +11,7 @@ The project has two coupled objectives:
 1. Engineer and verify a complete language-model pipeline: provenance-aware data collection, deterministic preprocessing, a train-only byte-level BPE tokenizer, a hand-implemented GPT-style model, resumable mixed-precision training, and reproducible evaluation.
 2. Answer the following falsifiable research question:
 
-> Under the same curated training corpus, tokenizer, context length, and measured training-token budget, does the approximately 29M-parameter NebulaLM configuration achieve lower held-out astronomy bits-per-byte than both a 5-gram language model and an approximately 10M-parameter transformer baseline, without pervasive verbatim memorization?
+> Under the same curated training corpus, tokenizer, context length, and measured training-token budget, does the approximately 29M-parameter AstroLM configuration achieve lower held-out astronomy bits-per-byte than both a 5-gram language model and an approximately 10M-parameter transformer baseline, without pervasive verbatim memorization?
 
 The final report must answer this question even if the answer is no.
 

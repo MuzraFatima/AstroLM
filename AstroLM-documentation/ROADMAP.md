@@ -1,4 +1,4 @@
-# Implementation Roadmap and Team Interfaces — NebulaLM v1
+# Implementation Roadmap and Team Interfaces — AstroLM v1
 
 ## 1. Workstream contracts
 
@@ -106,7 +106,7 @@ Publishes:
 ### Phase 6 — Baseline and full training
 
 - Train the 5-gram and smaller-transformer baselines under registered rules.
-- Train NebulaLM, evaluating fixed validation windows at registered token intervals.
+- Train AstroLM, evaluating fixed validation windows at registered token intervals.
 - Evaluation monitors protocol compliance; Data monitors source/shard accounting.
 
 **Gate:** best checkpoint selected from validation only; terminal status and all deviations recorded.

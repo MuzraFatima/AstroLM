@@ -6,7 +6,7 @@ Date: 2026-10-25
 
 Phase 0 is frozen as follows.
 
-- Name: NebulaLM v1.
+- Name: AstroLM v1.
 - Research question: the comparison stated in `README.md`. A negative or inconclusive result is still a completed project.
 - Success criteria: the engineering and research acceptance rules in the product requirements. No headline number is claimed in this phase.
 - Temporal cutoff: `2024-01-01T00:00:00Z`. See decision 001.

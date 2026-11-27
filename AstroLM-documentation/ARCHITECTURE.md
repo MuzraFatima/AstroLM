@@ -1,4 +1,4 @@
-# Architecture Specification — NebulaLM v1
+# Architecture Specification — AstroLM v1
 
 ## 1. Source-of-truth rule
 

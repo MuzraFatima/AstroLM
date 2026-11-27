@@ -1,4 +1,4 @@
-# Reproducibility Specification — NebulaLM v1
+# Reproducibility Specification — AstroLM v1
 
 ## 1. Reproducibility target
 
