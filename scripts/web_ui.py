@@ -215,6 +215,12 @@ def make_handler(engine: Engine):
                 self._send(200, PAGE.encode("utf-8"), "text/html; charset=utf-8")
             elif self.path == "/models":
                 self._send(200, json.dumps(available_models()).encode("utf-8"), "application/json")
+            elif self.path == "/favicon.ico":
+                # The browser asks for this on every load; answering 204 keeps a
+                # 404 out of the console.
+                self.send_response(204)
+                self.send_header("Content-Length", "0")
+                self.end_headers()
             else:
                 self._send(404, b"not found", "text/plain")
 
