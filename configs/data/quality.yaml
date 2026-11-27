@@ -1,0 +1,12 @@
+# Thresholds first separated the Phase 1 fixtures from the labeled reject set.
+# On 2026-10-26 they were checked on the collected OpenStax and Wikipedia text.
+# Language-score rejects that remained were bibliographies, outlines, catalogs, and short stubs.
+# The 0.90 cutoff was kept after that check.
+min_chars: 200
+min_paragraphs: 2
+min_alpha_ratio: 0.65
+max_markup_ratio: 0.02
+max_repeated_line_ratio: 0.35
+min_language_score: 0.90
+min_language_words: 20
+language_function_word_denominator: 0.35

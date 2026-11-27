@@ -1,0 +1,43 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+.env.*
+*.pem
+
+# Model checkpoints and training runs (tracked outside git)
+/checkpoints/
+/runs/
+*.pt
+*.bin
+*.safetensors
+
+# Raw data and tokenized shards. Manifests stay in git; payloads do not.
+# Patterns are rooted so src/nebulalm/data is not ignored.
+/data/
+/shards/
+/raw/
+/processed/
+
+# Local working notes (kept out of the repository)
+/worklog/
