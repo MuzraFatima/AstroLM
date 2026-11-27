@@ -22,7 +22,12 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = Path(os.environ.setdefault("NEBULALM_DATA_DIR", "C:/Users/aaqil/nebulalm-data"))
+if not os.environ.get("NEBULALM_DATA_DIR"):
+    raise SystemExit(
+        "set NEBULALM_DATA_DIR to a folder outside the repository; "
+        "article text, shards, and runs are written there"
+    )
+DATA = Path(os.environ["NEBULALM_DATA_DIR"])
 # Runs and shards are large; they live outside the repository (and outside any synced folder).
 # Child scripts inherit this environment variable.
 WORK = Path(os.environ.setdefault("NEBULALM_WORK_DIR", str(DATA)))
