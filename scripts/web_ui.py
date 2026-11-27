@@ -224,10 +224,19 @@ def make_handler(engine: Engine):
                 return
             try:
                 length = min(int(self.headers.get("Content-Length", 0)), 100_000)
-                result = engine.run(json.loads(self.rfile.read(length) or b"{}"))
+                request = json.loads(self.rfile.read(length) or b"{}")
+                if not isinstance(request, dict):
+                    raise ValueError("request body must be a JSON object")
+                result = engine.run(request)
                 self._send(200, json.dumps(result, ensure_ascii=False).encode("utf-8"), "application/json; charset=utf-8")
-            except (ValueError, KeyError, json.JSONDecodeError) as exc:
+            except (ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
                 self._send(400, json.dumps({"error": str(exc)}).encode("utf-8"), "application/json")
+            except Exception as exc:  # noqa: BLE001
+                # A handler must always answer: an unwritten response closes the
+                # socket, which the browser reports as a network failure rather
+                # than an error it can show.
+                self._send(500, json.dumps({"error": f"internal error: {type(exc).__name__}"}).encode("utf-8"),
+                           "application/json")
 
         def log_message(self, format: str, *args) -> None:
             return
