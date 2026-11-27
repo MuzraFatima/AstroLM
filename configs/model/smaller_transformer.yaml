@@ -12,5 +12,5 @@ position: learned-absolute
 weight_tying: true
 dropout: 0.10
 notes: >
-  MLP width is four times d_model, matching the NebulaLM ratio.
+  MLP width is four times d_model, matching the AstroLM ratio.
   The parameter count is computed by code. "Approximately 10M" is a label.

@@ -22,22 +22,22 @@ import random
 import shutil
 from pathlib import Path
 
-from nebulalm.packing.packer import pack_documents, write_shard
-from nebulalm.tokenizer.train import NebulaTokenizer
-from nebulalm.utils.hashing import sha256_file
-from nebulalm.utils.io import read_jsonl, read_yaml, write_json
+from astrolm.packing.packer import pack_documents, write_shard
+from astrolm.tokenizer.train import AstroTokenizer
+from astrolm.utils.hashing import sha256_file
+from astrolm.utils.io import read_jsonl, read_yaml, write_json
 
 ROOT = Path(__file__).resolve().parents[1]
 # Runs and shards are large; they live outside the repository (and outside any synced folder).
-WORK = Path(os.environ.get("NEBULALM_WORK_DIR", ROOT))
+WORK = Path(os.environ.get("ASTROLM_WORK_DIR", ROOT))
 WINDOWS_PER_FILE = 20000
 
 
 def data_dir() -> Path:
-    return Path(os.environ.get("NEBULALM_DATA_DIR", ROOT / "data")) / "corpus"
+    return Path(os.environ.get("ASTROLM_DATA_DIR", ROOT / "data")) / "corpus"
 
 
-def encode_all(tokenizer: NebulaTokenizer, rows: list[tuple[str, str]]) -> list[tuple[str, list[int], int]]:
+def encode_all(tokenizer: AstroTokenizer, rows: list[tuple[str, str]]) -> list[tuple[str, list[int], int]]:
     """Fast batch encoding; documents containing literal control strings take the byte-safe path."""
     out: list[tuple[str, list[int], int]] = []
     plain = [(doc, text) for doc, text in rows if "<eos>" not in text and "<pad>" not in text]
@@ -76,7 +76,7 @@ def main() -> None:
     seeds = read_yaml(ROOT / "configs" / "seeds.yaml")
     tokenizer_path = args.tokenizer / "tokenizer.json"
     tokenizer_sha = sha256_file(tokenizer_path)
-    tokenizer = NebulaTokenizer.from_file(tokenizer_path, train_manifest_sha256="")
+    tokenizer = AstroTokenizer.from_file(tokenizer_path, train_manifest_sha256="")
     meta = {"vocab_size": tokenizer.vocab_size(), "tokenizer_sha256": tokenizer_sha,
             "eos_id": tokenizer.eos_id, "pad_id": tokenizer.pad_id}
     corpus = data_dir()

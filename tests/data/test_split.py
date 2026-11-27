@@ -1,10 +1,10 @@
 from collections import Counter
 
-from nebulalm.data.pipeline import prepare_corpus
-from nebulalm.data.sample_corpus import hand_written_documents, volume_documents
-from nebulalm.data.split import assign_cluster
-from nebulalm.evaluation.leakage import leakage_report
-from nebulalm.utils.io import read_yaml
+from astrolm.data.pipeline import prepare_corpus
+from astrolm.data.sample_corpus import hand_written_documents, volume_documents
+from astrolm.data.split import assign_cluster
+from astrolm.evaluation.leakage import leakage_report
+from astrolm.utils.io import read_yaml
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]

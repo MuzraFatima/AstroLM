@@ -1,5 +1,5 @@
-from nebulalm.data.dedup import UnionFind, cluster_documents, estimated_jaccard, minhash_signature
-from nebulalm.data.sample_corpus import hand_written_documents
+from astrolm.data.dedup import UnionFind, cluster_documents, estimated_jaccard, minhash_signature
+from astrolm.data.sample_corpus import hand_written_documents
 
 
 def test_transitive_union_find():

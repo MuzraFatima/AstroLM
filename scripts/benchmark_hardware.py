@@ -20,19 +20,19 @@ from pathlib import Path
 
 import torch
 
-from nebulalm.model.config import load_shape
-from nebulalm.model.transformer import NebulaLM
-from nebulalm.training.checkpoint import save_checkpoint
-from nebulalm.training.optimizer import build_optimizer
-from nebulalm.utils.io import read_yaml
+from astrolm.model.config import load_shape
+from astrolm.model.transformer import AstroLM
+from astrolm.training.checkpoint import save_checkpoint
+from astrolm.training.optimizer import build_optimizer
+from astrolm.utils.io import read_yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-SIZES = (("small_4m.yaml", 300), ("smaller_transformer.yaml", 300), ("nebulalm.yaml", 500))
+SIZES = (("small_4m.yaml", 300), ("smaller_transformer.yaml", 300), ("astrolm.yaml", 500))
 WARMUP_STEPS = 30
 # Blueprint D_cap: tokens that fit a 90 GPU-hour budget, given the measured throughput.
 BUDGET_GPU_HOURS = 90
 # Training tokens per model as multiples of D (blueprint, compute section).
-D_MULTIPLES = {"small_4m.yaml": 10.9, "smaller_transformer.yaml": 41.7, "nebulalm.yaml": 31.7}
+D_MULTIPLES = {"small_4m.yaml": 10.9, "smaller_transformer.yaml": 41.7, "astrolm.yaml": 31.7}
 
 
 def gpu_sensors() -> dict:
@@ -51,7 +51,7 @@ def bench(config: str, steps: int, vocab: int, microbatch: int, accumulation: in
     base = read_yaml(ROOT / "configs" / "train" / "base.yaml")
     device = "cuda"
     torch.manual_seed(0)
-    model = NebulaLM(shape, seed=17014).to(device)
+    model = AstroLM(shape, seed=17014).to(device)
     optimizer = build_optimizer(model, {**base["optimizer"], "peak_lr": 3e-4})
     scaler = torch.amp.GradScaler("cuda", enabled=precision == "fp16")
     dtype = {"fp16": torch.float16, "bf16": torch.bfloat16}.get(precision)

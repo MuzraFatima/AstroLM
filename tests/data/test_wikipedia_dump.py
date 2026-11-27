@@ -1,9 +1,9 @@
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from nebulalm.data.adapters.wikipedia_dump import dump_snapshot_time, iter_dump_rows, record_from_dump_row
-from nebulalm.data.pipeline import prepare_corpus
-from nebulalm.utils.io import read_yaml
+from astrolm.data.adapters.wikipedia_dump import dump_snapshot_time, iter_dump_rows, record_from_dump_row
+from astrolm.data.pipeline import prepare_corpus
+from astrolm.utils.io import read_yaml
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]

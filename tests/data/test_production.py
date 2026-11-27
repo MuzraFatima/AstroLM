@@ -1,8 +1,8 @@
-from nebulalm.data.adapters.openstax import archive_page_url, iter_section_nodes, plain_title
-from nebulalm.data.parse import parse_wikitext
-from nebulalm.data.adapters.wikipedia import revision_lookup_url, revisions_by_id_url
-from nebulalm.data.reader import SplitReader
-from nebulalm.tokenizer.compare import training_texts
+from astrolm.data.adapters.openstax import archive_page_url, iter_section_nodes, plain_title
+from astrolm.data.parse import parse_wikitext
+from astrolm.data.adapters.wikipedia import revision_lookup_url, revisions_by_id_url
+from astrolm.data.reader import SplitReader
+from astrolm.tokenizer.compare import training_texts
 import pytest
 
 
@@ -58,7 +58,7 @@ def test_tokenizer_tooling_refuses_held_out_text():
 
 
 def test_latest_revision_titles_follow_normalization_and_redirects():
-    from nebulalm.data.adapters.wikipedia import resolve_titles
+    from astrolm.data.adapters.wikipedia import resolve_titles
 
     payload = {
         "query": {

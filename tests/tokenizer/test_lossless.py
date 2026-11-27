@@ -2,7 +2,7 @@ from pathlib import Path
 
 from tokenizers.pre_tokenizers import ByteLevel
 
-from nebulalm.tokenizer.train import train_byte_bpe
+from astrolm.tokenizer.train import train_byte_bpe
 
 ROOT = Path(__file__).resolve().parents[2]
 

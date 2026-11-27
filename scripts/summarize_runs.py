@@ -1,6 +1,6 @@
 """Copy each finished run's summary into the repository (reports/training/runs.json).
 
-Checkpoints stay in NEBULALM_WORK_DIR; this file keeps the numbers, configs'
+Checkpoints stay in ASTROLM_WORK_DIR; this file keeps the numbers, configs'
 hashes, and final-checkpoint hashes in git so they survive the work folder.
 """
 
@@ -11,7 +11,7 @@ import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = Path(os.environ.get("NEBULALM_WORK_DIR", ROOT))
+WORK = Path(os.environ.get("ASTROLM_WORK_DIR", ROOT))
 
 
 def main() -> None:

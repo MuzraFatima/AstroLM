@@ -1,4 +1,4 @@
-from nebulalm.data.parse import parse_dump_text, parse_wikitext
+from astrolm.data.parse import parse_dump_text, parse_wikitext
 
 
 def test_dump_text_is_cut_at_the_first_trailing_heading():

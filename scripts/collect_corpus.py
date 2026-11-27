@@ -13,7 +13,7 @@ API alternative, slower and rate limited (about two hours for the full tree):
   content    fetch wikitext for those revision ids
   simple     fetch Simple English pages with the same title (probe siblings)
 
-Article text goes to NEBULALM_DATA_DIR (default: data/), which git ignores.
+Article text goes to ASTROLM_DATA_DIR (default: data/), which git ignores.
 """
 
 from __future__ import annotations
@@ -27,8 +27,8 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
-from nebulalm.data.acquire import RateLimiter, within_cutoff
-from nebulalm.data.adapters.wikipedia import (
+from astrolm.data.acquire import RateLimiter, within_cutoff
+from astrolm.data.adapters.wikipedia import (
     EN_SOURCE,
     SIMPLE_API,
     SIMPLE_SOURCE,
@@ -37,8 +37,8 @@ from nebulalm.data.adapters.wikipedia import (
     lookup_revision,
     walk_category_tree,
 )
-from nebulalm.data.adapters.wikipedia_dump import iter_dump_rows, record_from_dump_row
-from nebulalm.utils.io import read_json, read_yaml, write_json, write_jsonl
+from astrolm.data.adapters.wikipedia_dump import iter_dump_rows, record_from_dump_row
+from astrolm.utils.io import read_json, read_yaml, write_json, write_jsonl
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT_BATCH = 40
@@ -47,7 +47,7 @@ WORKERS = 3
 
 
 def data_dir() -> Path:
-    return Path(os.environ.get("NEBULALM_DATA_DIR", ROOT / "data")) / "corpus"
+    return Path(os.environ.get("ASTROLM_DATA_DIR", ROOT / "data")) / "corpus"
 
 
 def _now() -> str:
@@ -229,7 +229,7 @@ def stage_pageids(tree: dict, out: Path) -> dict[str, dict]:
 
 def stage_dump(page_ids: dict[str, dict], out: Path, dump: dict) -> None:
     revision = dump["dataset_revision"]
-    root = Path(os.environ.get("NEBULALM_DATA_DIR", ROOT / "data")) / "hf"
+    root = Path(os.environ.get("ASTROLM_DATA_DIR", ROOT / "data")) / "hf"
     retrieved_at = _now()
     wanted = {row["page_id"] for row in page_ids.values() if row.get("page_id")}
     en_files = sorted((root / dump["english_config"]).glob("*.parquet"))

@@ -6,8 +6,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from nebulalm.data.acquire import RateLimiter, within_cutoff
-from nebulalm.data.adapters.wikipedia import fetch_revision
+from astrolm.data.acquire import RateLimiter, within_cutoff
+from astrolm.data.adapters.wikipedia import fetch_revision
 
 TITLES = ("Astronomy", "Sun", "Mars", "Jupiter", "Andromeda Galaxy")
 CUTOFF = "2024-01-01T00:00:00Z"

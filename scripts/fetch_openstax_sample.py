@@ -11,8 +11,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from nebulalm.data.adapters.openstax import record_from_html
-from nebulalm.data.acquire import fetch_text
+from astrolm.data.adapters.openstax import record_from_html
+from astrolm.data.acquire import fetch_text
 
 URL = "https://openstax.org/books/astronomy-2e/pages/1-1-the-nature-of-astronomy"
 SECTION_ID = "1-1-the-nature-of-astronomy"

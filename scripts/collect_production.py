@@ -10,10 +10,10 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from nebulalm.data.acquire import RateLimiter, document_id, within_cutoff
-from nebulalm.data.adapters.openstax import fetch_archived_section, iter_section_nodes, load_archive_tree
-from nebulalm.data.adapters.wikipedia import fetch_records_by_revid, list_category_pages, lookup_revision
-from nebulalm.utils.io import read_yaml
+from astrolm.data.acquire import RateLimiter, document_id, within_cutoff
+from astrolm.data.adapters.openstax import fetch_archived_section, iter_section_nodes, load_archive_tree
+from astrolm.data.adapters.wikipedia import fetch_records_by_revid, list_category_pages, lookup_revision
+from astrolm.utils.io import read_yaml
 
 
 def _retrieved_at() -> str:

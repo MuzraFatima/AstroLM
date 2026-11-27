@@ -17,10 +17,10 @@ import json
 import os
 from pathlib import Path
 
-from nebulalm.training.checkpoint import step_path
+from astrolm.training.checkpoint import step_path
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = Path(os.environ.get("NEBULALM_WORK_DIR", ROOT))
+WORK = Path(os.environ.get("ASTROLM_WORK_DIR", ROOT))
 
 
 def plan(run: Path) -> list[Path]:

@@ -4,9 +4,9 @@ from pathlib import Path
 import jsonschema
 import pytest
 
-from nebulalm.data.pipeline import prepare_corpus
-from nebulalm.data.sample_corpus import hand_written_documents, volume_documents
-from nebulalm.utils.io import read_yaml
+from astrolm.data.pipeline import prepare_corpus
+from astrolm.data.sample_corpus import hand_written_documents, volume_documents
+from astrolm.utils.io import read_yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 SCHEMA = json.loads((ROOT / "schemas" / "document.schema.json").read_text(encoding="utf-8"))

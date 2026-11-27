@@ -1,7 +1,7 @@
-from nebulalm.data.acquire import RateLimiter, document_id, raw_checksum, within_cutoff
-from nebulalm.data.adapters.openstax import record_from_html
-from nebulalm.data.adapters.wikipedia import record_from_payload
-from nebulalm.data.normalize import normalize
+from astrolm.data.acquire import RateLimiter, document_id, raw_checksum, within_cutoff
+from astrolm.data.adapters.openstax import record_from_html
+from astrolm.data.adapters.wikipedia import record_from_payload
+from astrolm.data.normalize import normalize
 
 
 def test_document_id_and_checksum_are_stable():
@@ -60,7 +60,7 @@ def test_openstax_html_keeps_notation():
 
 
 def test_wikitext_parser_drops_table_chrome():
-    from nebulalm.data.parse import parse_wikitext
+    from astrolm.data.parse import parse_wikitext
 
     raw = (
         "A '''natural satellite''' orbits a planet.\n"

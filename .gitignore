@@ -33,7 +33,7 @@ Thumbs.db
 *.safetensors
 
 # Raw data and tokenized shards. Manifests stay in git; payloads do not.
-# Patterns are rooted so src/nebulalm/data is not ignored.
+# Patterns are rooted so src/astrolm/data is not ignored.
 /data/
 /shards/
 /raw/
@@ -44,6 +44,6 @@ Thumbs.db
 
 # Personal deliverables: kept in this folder, never pushed
 /USER_GUIDE.md
-/NebulaLM-Presentation.pptx
+/AstroLM-Presentation.pptx
 /tools-local/
 /repo-backup/

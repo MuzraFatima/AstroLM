@@ -20,11 +20,11 @@ from pathlib import Path
 
 import torch
 
-from nebulalm.model.sampling import generate, load_run
-from nebulalm.tokenizer.train import NebulaTokenizer
+from astrolm.model.sampling import generate, load_run
+from astrolm.tokenizer.train import AstroTokenizer
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = Path(os.environ.get("NEBULALM_WORK_DIR", ROOT))
+WORK = Path(os.environ.get("ASTROLM_WORK_DIR", ROOT))
 SIZES = {"29m": "29.4M", "10m": "10.3M", "4m": "4.5M"}
 PASSES = (8, 4, 2, 1)
 
@@ -50,7 +50,7 @@ def available_models() -> list[dict]:
 class Engine:
     def __init__(self, device: str) -> None:
         self.device = device
-        self.tokenizer = NebulaTokenizer.from_file(ROOT / "artifacts" / "tokenizer" / "selected" / "tokenizer.json", "")
+        self.tokenizer = AstroTokenizer.from_file(ROOT / "artifacts" / "tokenizer" / "selected" / "tokenizer.json", "")
         self.models: dict[str, torch.nn.Module] = {}
         self.lock = threading.Lock()
         self.allowed = {model["id"] for model in available_models()}
@@ -86,7 +86,7 @@ PAGE = r"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NebulaLM</title>
+<title>AstroLM</title>
 <style>
   :root { --bg:#f7f7f5; --panel:#ffffff; --ink:#1d1d1b; --muted:#6b6b66; --line:#e2e2dd; --accent:#3b5bdb; --soft:#eef1fd; }
   @media (prefers-color-scheme: dark) {
@@ -123,7 +123,7 @@ PAGE = r"""<!doctype html>
 </head>
 <body>
 <main>
-  <h1>NebulaLM</h1>
+  <h1>AstroLM</h1>
   <p class="sub">A small astronomy language model trained from scratch on Wikipedia. Type the start of a sentence and it writes the rest.</p>
   <div class="panel">
     <label for="model">Model</label>
@@ -259,11 +259,11 @@ def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     engine = Engine(args.device)
     if not engine.allowed:
-        raise SystemExit(f"no trained models found under {WORK / 'runs'}; set NEBULALM_WORK_DIR")
+        raise SystemExit(f"no trained models found under {WORK / 'runs'}; set ASTROLM_WORK_DIR")
     # Bound to localhost only: the interface is for this machine.
     server = ThreadingHTTPServer(("127.0.0.1", args.port), make_handler(engine))
     url = f"http://localhost:{args.port}"
-    print(f"NebulaLM is running at {url} ({len(engine.allowed)} models, {args.device}). Press Ctrl+C to stop.")
+    print(f"AstroLM is running at {url} ({len(engine.allowed)} models, {args.device}). Press Ctrl+C to stop.")
     if not args.no_browser:
         webbrowser.open(url)
     try:

@@ -6,12 +6,12 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from nebulalm.data.pipeline import prepare_corpus
-from nebulalm.data.reader import SplitReader
-from nebulalm.evaluation.leakage import leakage_report
-from nebulalm.tokenizer.compare import training_byte_count
-from nebulalm.utils.hashing import sha256_file, sha256_text
-from nebulalm.utils.io import read_jsonl, read_yaml, write_json, write_jsonl
+from astrolm.data.pipeline import prepare_corpus
+from astrolm.data.reader import SplitReader
+from astrolm.evaluation.leakage import leakage_report
+from astrolm.tokenizer.compare import training_byte_count
+from astrolm.utils.hashing import sha256_file, sha256_text
+from astrolm.utils.io import read_jsonl, read_yaml, write_json, write_jsonl
 
 
 def _stats(records: list[dict], texts: dict[str, str]) -> dict:

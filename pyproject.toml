@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "nebulalm"
+name = "astrolm"
 version = "0.1.0"
 description = "From-scratch astronomy language model. Phase 1 is a small-sample vertical slice."
 readme = "README.md"

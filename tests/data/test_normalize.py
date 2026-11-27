@@ -1,5 +1,5 @@
-from nebulalm.data.normalize import normalize
-from nebulalm.utils.hashing import sha256_text
+from astrolm.data.normalize import normalize
+from astrolm.utils.hashing import sha256_text
 
 
 def test_normalization_preserves_astronomy_notation():

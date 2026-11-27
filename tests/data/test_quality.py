@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from nebulalm.data.normalize import normalize
-from nebulalm.data.quality import assess, load_thresholds
-from nebulalm.data.sample_corpus import hand_written_documents, rejection_documents
+from astrolm.data.normalize import normalize
+from astrolm.data.quality import assess, load_thresholds
+from astrolm.data.sample_corpus import hand_written_documents, rejection_documents
 
 ROOT = Path(__file__).resolve().parents[2]
 

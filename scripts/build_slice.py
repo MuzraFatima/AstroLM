@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from nebulalm.pipeline import build_slice
+from astrolm.pipeline import build_slice
 
 
 def main() -> None:

@@ -4,7 +4,7 @@
 torch==2.10.0
 numpy==2.4.2
 tokenizers==0.22.2
-# Needed by the Wikipedia parquet dump adapter (nebulalm.data.adapters.wikipedia_dump)
+# Needed by the Wikipedia parquet dump adapter (astrolm.data.adapters.wikipedia_dump)
 # and by tests/data/test_wikipedia_dump.py.
 pyarrow==26.0.1
 jsonschema==4.26.0

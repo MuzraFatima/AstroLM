@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://nebulalm.local/schemas/experiment.schema.json",
-  "title": "NebulaLM experiment registration",
+  "$id": "https://astrolm.local/schemas/experiment.schema.json",
+  "title": "AstroLM experiment registration",
   "type": "object",
   "additionalProperties": false,
   "required": [

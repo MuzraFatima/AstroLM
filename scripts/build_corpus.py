@@ -3,7 +3,7 @@
 Run after scripts/collect_corpus.py, which writes records.jsonl and
 simple_records.jsonl from the pinned dump.
 
-Text goes under NEBULALM_DATA_DIR (default data/); the sealed test text is
+Text goes under ASTROLM_DATA_DIR (default data/); the sealed test text is
 written to its own folder. Git receives manifests, hashes, canaries, and reports.
 """
 
@@ -17,24 +17,24 @@ import tempfile
 from collections import Counter
 from pathlib import Path
 
-from nebulalm.data.adapters.wikipedia import SIMPLE_SOURCE
-from nebulalm.data.normalize import normalize
-from nebulalm.data.parse import parse_dump_text
-from nebulalm.data.pipeline import prepare_corpus
-from nebulalm.data.probes import (
+from astrolm.data.adapters.wikipedia import SIMPLE_SOURCE
+from astrolm.data.normalize import normalize
+from astrolm.data.parse import parse_dump_text
+from astrolm.data.pipeline import prepare_corpus
+from astrolm.data.probes import (
     assign_groups,
     canary_vocabulary,
     edit_to_jaccard,
     make_canaries,
     word_type_jaccard,
 )
-from nebulalm.data.quality import assess
-from nebulalm.data.reader import SplitReader
-from nebulalm.data.split import POOL_BOUNDS, POOLS_ALGORITHM, assign_pool
-from nebulalm.evaluation.leakage import leakage_report
-from nebulalm.tokenizer.train import train_byte_bpe
-from nebulalm.utils.hashing import sha256_file, sha256_text
-from nebulalm.utils.io import read_json, read_jsonl, read_yaml, write_json, write_jsonl
+from astrolm.data.quality import assess
+from astrolm.data.reader import SplitReader
+from astrolm.data.split import POOL_BOUNDS, POOLS_ALGORITHM, assign_pool
+from astrolm.evaluation.leakage import leakage_report
+from astrolm.tokenizer.train import train_byte_bpe
+from astrolm.utils.hashing import sha256_file, sha256_text
+from astrolm.utils.io import read_json, read_jsonl, read_yaml, write_json, write_jsonl
 
 ROOT = Path(__file__).resolve().parents[1]
 PIPELINE_VERSION = "wikipedia-v1"
@@ -45,7 +45,7 @@ COUNT_VOCAB = 8000
 
 
 def data_dir() -> Path:
-    return Path(os.environ.get("NEBULALM_DATA_DIR", ROOT / "data")) / "corpus"
+    return Path(os.environ.get("ASTROLM_DATA_DIR", ROOT / "data")) / "corpus"
 
 
 def _rows(path: Path) -> list[dict]:
@@ -285,7 +285,7 @@ def main() -> None:
         "train_documents": len(seen),
         "held_out_ids_in_training_iterator": 0,
         "test_documents": stats.get("test", {}).get("documents", 0),
-        "test_text_location": "NEBULALM_DATA_DIR/corpus/sealed/test.jsonl",
+        "test_text_location": "ASTROLM_DATA_DIR/corpus/sealed/test.jsonl",
     })
     write_json(report_dir / "quality_summary.json", {"rejection_reason_counts": dict(reasons), "thresholds": thresholds})
     write_json(report_dir / "license_audit.json", {

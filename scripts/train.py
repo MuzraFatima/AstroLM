@@ -2,10 +2,10 @@
 
     # trunk: holds the peak to 0.8 * max(branch_passes) passes, saving the
     # branch points 0.8 * E along the way
-    python scripts/train.py --model nebulalm.yaml --lr 3e-4 --run runs/m0-29m-trunk --trunk
+    python scripts/train.py --model astrolm.yaml --lr 3e-4 --run runs/m0-29m-trunk --trunk
 
     # branch: cooldown from the trunk's 0.8 * E checkpoint, ending at E passes
-    python scripts/train.py --model nebulalm.yaml --lr 3e-4 --run runs/m0-29m-e4 --branch-from runs/m0-29m-trunk --passes 4
+    python scripts/train.py --model astrolm.yaml --lr 3e-4 --run runs/m0-29m-e4 --branch-from runs/m0-29m-trunk --passes 4
 
     # plain run of a fixed number of passes (LR sweep, proxies, cosine check)
     python scripts/train.py --model smaller_transformer.yaml --lr 1e-3 --run runs/lr-10m-1e3 --passes 1
@@ -25,19 +25,19 @@ from pathlib import Path
 
 import torch
 
-from nebulalm.model.config import load_shape
-from nebulalm.model.transformer import NebulaLM
-from nebulalm.training.checkpoint import load_checkpoint, write_json_atomic
-from nebulalm.training.data import EpochSampler, ShardWindows
-from nebulalm.training.optimizer import build_optimizer, group_report
-from nebulalm.training.schedule import branch_schedule
-from nebulalm.training.trainer import Trainer, run
-from nebulalm.utils.hashing import sha256_file, sha256_text
-from nebulalm.utils.io import read_json, read_yaml
+from astrolm.model.config import load_shape
+from astrolm.model.transformer import AstroLM
+from astrolm.training.checkpoint import load_checkpoint, write_json_atomic
+from astrolm.training.data import EpochSampler, ShardWindows
+from astrolm.training.optimizer import build_optimizer, group_report
+from astrolm.training.schedule import branch_schedule
+from astrolm.training.trainer import Trainer, run
+from astrolm.utils.hashing import sha256_file, sha256_text
+from astrolm.utils.io import read_json, read_yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 # Runs and shards are large; they live outside the repository (and outside any synced folder).
-WORK = Path(os.environ.get("NEBULALM_WORK_DIR", ROOT))
+WORK = Path(os.environ.get("ASTROLM_WORK_DIR", ROOT))
 
 
 def git_commit() -> dict:
@@ -134,7 +134,7 @@ def main() -> None:
     config["config_sha256"] = sha256_text(json.dumps(config, sort_keys=True, default=str))
 
     torch.manual_seed(seed)
-    model = NebulaLM(shape, seed=seed)
+    model = AstroLM(shape, seed=seed)
     optimizer = build_optimizer(model, {**base["optimizer"], "peak_lr": args.lr})
     # M1 shard folders record the M0 window count, so shared windows keep their M0 order.
     sampler = EpochSampler(len(train), seed=int(seeds["data_shuffle"]), base_size=shard_manifest.get("base_windows"))

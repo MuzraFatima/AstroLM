@@ -21,19 +21,19 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from nebulalm.evaluation.readouts import document_nll, exposure_bits, extractability, membership_auc
-from nebulalm.model.config import ModelShape
-from nebulalm.model.transformer import NebulaLM
-from nebulalm.tokenizer.train import NebulaTokenizer
-from nebulalm.training.checkpoint import load_checkpoint
-from nebulalm.utils.hashing import sha256_file
-from nebulalm.utils.io import read_json, read_jsonl, write_json
+from astrolm.evaluation.readouts import document_nll, exposure_bits, extractability, membership_auc
+from astrolm.model.config import ModelShape
+from astrolm.model.transformer import AstroLM
+from astrolm.tokenizer.train import AstroTokenizer
+from astrolm.training.checkpoint import load_checkpoint
+from astrolm.utils.hashing import sha256_file
+from astrolm.utils.io import read_json, read_jsonl, write_json
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def data_dir() -> Path:
-    return Path(os.environ.get("NEBULALM_DATA_DIR", ROOT / "data")) / "corpus"
+    return Path(os.environ.get("ASTROLM_DATA_DIR", ROOT / "data")) / "corpus"
 
 
 def per_document(model, tokenizer, rows: list[dict], device: str) -> list[dict]:
@@ -76,10 +76,10 @@ def main() -> None:
         path = checkpoints / args.checkpoint
     payload = load_checkpoint(path)
     shape = ModelShape(**payload["identity"]["model"])
-    model = NebulaLM(shape, seed=0)
+    model = AstroLM(shape, seed=0)
     model.load_state_dict(payload["model"])
     model.to(args.device).eval()
-    tokenizer = NebulaTokenizer.from_file(args.tokenizer / "tokenizer.json", "")
+    tokenizer = AstroTokenizer.from_file(args.tokenizer / "tokenizer.json", "")
 
     checkpoint_sha = sha256_file(path)
     existing = args.run / "audit.json"

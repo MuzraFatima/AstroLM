@@ -2,10 +2,10 @@
 
 from pathlib import Path
 
-from nebulalm.data.pipeline import prepare_corpus
-from nebulalm.data.sample_corpus import build_sample_records
-from nebulalm.evaluation.leakage import leakage_report
-from nebulalm.utils.io import read_yaml, write_json
+from astrolm.data.pipeline import prepare_corpus
+from astrolm.data.sample_corpus import build_sample_records
+from astrolm.evaluation.leakage import leakage_report
+from astrolm.utils.io import read_yaml, write_json
 
 
 def main() -> None:

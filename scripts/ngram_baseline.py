@@ -18,15 +18,15 @@ from pathlib import Path
 
 import numpy as np
 
-from nebulalm.baselines.kneser_ney import KneserNey, score_windows, windows_to_stream
-from nebulalm.tokenizer.train import NebulaTokenizer
-from nebulalm.training.data import ShardWindows
-from nebulalm.utils.hashing import sha256_file
-from nebulalm.utils.io import read_json, read_jsonl, write_json
+from astrolm.baselines.kneser_ney import KneserNey, score_windows, windows_to_stream
+from astrolm.tokenizer.train import AstroTokenizer
+from astrolm.training.data import ShardWindows
+from astrolm.utils.hashing import sha256_file
+from astrolm.utils.io import read_json, read_jsonl, write_json
 
 ROOT = Path(__file__).resolve().parents[1]
 # Runs and shards are large; they live outside the repository (and outside any synced folder).
-WORK = Path(os.environ.get("NEBULALM_WORK_DIR", ROOT))
+WORK = Path(os.environ.get("ASTROLM_WORK_DIR", ROOT))
 ORDERS = (3, 4, 5, 6)
 REGISTERED = 5
 
@@ -70,8 +70,8 @@ def main() -> None:
             del model
     report["best_validation_order"] = min(report["orders"], key=lambda key: report["orders"][key]["validation_bpb"])
     if args.final_evaluation_campaign:
-        tokenizer = NebulaTokenizer.from_file(args.tokenizer / "tokenizer.json", "")
-        data = Path(os.environ.get("NEBULALM_DATA_DIR", ROOT / "data")) / "corpus"
+        tokenizer = AstroTokenizer.from_file(args.tokenizer / "tokenizer.json", "")
+        data = Path(os.environ.get("ASTROLM_DATA_DIR", ROOT / "data")) / "corpus"
         rows = sorted(read_jsonl(data / "sealed" / "test.jsonl"), key=lambda row: row["document_id"])
         per_document = []
         for row in rows:

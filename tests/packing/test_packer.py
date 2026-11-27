@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from nebulalm.packing.packer import pack_documents, read_shard, write_shard
+from astrolm.packing.packer import pack_documents, read_shard, write_shard
 
 
 def test_window_edges_and_pad_mask(tmp_path: Path):

@@ -3,7 +3,7 @@ import math
 import numpy as np
 import pytest
 
-from nebulalm.baselines.kneser_ney import KneserNey, score_windows, windows_to_stream
+from astrolm.baselines.kneser_ney import KneserNey, score_windows, windows_to_stream
 
 V = 12
 

@@ -22,15 +22,15 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-if not os.environ.get("NEBULALM_DATA_DIR"):
+if not os.environ.get("ASTROLM_DATA_DIR"):
     raise SystemExit(
-        "set NEBULALM_DATA_DIR to a folder outside the repository; "
+        "set ASTROLM_DATA_DIR to a folder outside the repository; "
         "article text, shards, and runs are written there"
     )
-DATA = Path(os.environ["NEBULALM_DATA_DIR"])
+DATA = Path(os.environ["ASTROLM_DATA_DIR"])
 # Runs and shards are large; they live outside the repository (and outside any synced folder).
 # Child scripts inherit this environment variable.
-WORK = Path(os.environ.setdefault("NEBULALM_WORK_DIR", str(DATA)))
+WORK = Path(os.environ.setdefault("ASTROLM_WORK_DIR", str(DATA)))
 STATE = WORK / "runs" / "pipeline"
 WHEEL = DATA / "torch-2.10.0+cu128-cp312-cp312-win_amd64.whl"
 WHEEL_BYTES = 2867409626

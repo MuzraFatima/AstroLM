@@ -1,8 +1,8 @@
 import random
 from collections import Counter
 
-from nebulalm.data.dedup import lead_entity_links
-from nebulalm.data.probes import (
+from astrolm.data.dedup import lead_entity_links
+from astrolm.data.probes import (
     assign_groups,
     canary_vocabulary,
     edit_to_jaccard,
@@ -10,8 +10,8 @@ from nebulalm.data.probes import (
     make_canaries,
     shingle_set,
 )
-from nebulalm.data.reader import SplitReader
-from nebulalm.data.split import POOL_BOUNDS, assign_pool
+from astrolm.data.reader import SplitReader
+from astrolm.data.split import POOL_BOUNDS, assign_pool
 import pytest
 
 SETTINGS = {

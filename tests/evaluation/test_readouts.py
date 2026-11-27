@@ -3,7 +3,7 @@ import math
 import pytest
 import torch
 
-from nebulalm.evaluation.readouts import (
+from astrolm.evaluation.readouts import (
     auc,
     did_benefits,
     document_nll,
@@ -11,14 +11,14 @@ from nebulalm.evaluation.readouts import (
     extractable,
     membership_auc,
 )
-from nebulalm.model.config import ModelShape
-from nebulalm.model.transformer import NebulaLM
+from astrolm.model.config import ModelShape
+from astrolm.model.transformer import AstroLM
 
 SHAPE = ModelShape(name="t", n_layer=1, n_head=2, d_model=16, d_mlp=32, context_length=8, vocab_size=20, dropout=0.0)
 
 
 def test_every_document_token_is_scored_exactly_once_across_chunks():
-    model = NebulaLM(SHAPE, seed=1).eval()
+    model = AstroLM(SHAPE, seed=1).eval()
     ids = list(range(2, 19))  # 17 tokens, longer than one 8-token chunk
     _, count = document_nll(model, ids, eos_id=1, context=8)
     assert count == len(ids)
@@ -38,7 +38,7 @@ def test_exposure_bits_follow_the_registered_formula():
 
 
 def test_extractable_detects_an_exact_memorized_continuation():
-    model = NebulaLM(SHAPE, seed=1)
+    model = AstroLM(SHAPE, seed=1)
     sequence = torch.tensor([[2, 3, 4, 5, 6, 7, 8, 9]])
     optimizer = torch.optim.Adam(model.parameters(), lr=0.05)
     for _ in range(200):

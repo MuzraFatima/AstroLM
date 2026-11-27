@@ -17,21 +17,21 @@ import subprocess
 import sys
 from pathlib import Path
 
-from nebulalm.tokenizer.evaluate import evaluate_tokenizer
-from nebulalm.tokenizer.train import NebulaTokenizer, train_byte_bpe
-from nebulalm.utils.hashing import sha256_file
-from nebulalm.utils.io import read_json, read_jsonl, read_yaml, write_json
+from astrolm.tokenizer.evaluate import evaluate_tokenizer
+from astrolm.tokenizer.train import AstroTokenizer, train_byte_bpe
+from astrolm.utils.hashing import sha256_file
+from astrolm.utils.io import read_json, read_jsonl, read_yaml, write_json
 
 ROOT = Path(__file__).resolve().parents[1]
 # Runs and shards are large; they live outside the repository (and outside any synced folder).
-WORK = Path(os.environ.get("NEBULALM_WORK_DIR", ROOT))
+WORK = Path(os.environ.get("ASTROLM_WORK_DIR", ROOT))
 PROTOCOL = ROOT / "experiments" / "protocols" / "EXP-TOK-production.yaml"
 ARTIFACTS = ROOT / "artifacts" / "tokenizer"
 REPORT = ROOT / "reports" / "tokenizer" / "production_comparison.json"
 
 
 def data_dir() -> Path:
-    return Path(os.environ.get("NEBULALM_DATA_DIR", ROOT / "data"))
+    return Path(os.environ.get("ASTROLM_DATA_DIR", ROOT / "data"))
 
 
 def candidates() -> list[dict]:

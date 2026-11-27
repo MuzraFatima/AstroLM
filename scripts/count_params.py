@@ -6,11 +6,11 @@ import argparse
 import json
 from pathlib import Path
 
-from nebulalm.model.config import load_shape
-from nebulalm.model.transformer import NebulaLM
+from astrolm.model.config import load_shape
+from astrolm.model.transformer import AstroLM
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIGS = ("small_4m.yaml", "smaller_transformer.yaml", "nebulalm.yaml")
+CONFIGS = ("small_4m.yaml", "smaller_transformer.yaml", "astrolm.yaml")
 
 
 def main() -> None:
@@ -21,7 +21,7 @@ def main() -> None:
     rows = []
     for name in CONFIGS:
         shape = load_shape(ROOT / "configs" / "model" / name, vocab_size=args.vocab)
-        model = NebulaLM(shape, seed=17014)
+        model = AstroLM(shape, seed=17014)
         rows.append({**shape.__dict__, "config": name, "parameters": model.parameter_count(),
                      "formula": shape.parameter_count()})
     text = json.dumps(rows, indent=2)

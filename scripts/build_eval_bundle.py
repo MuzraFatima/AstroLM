@@ -1,7 +1,7 @@
 """Freeze the evaluation bundle (blueprint gate: Day 13).
 
 Selects, with fixed seeds, the documents every checkpoint is scored on and
-hashes them. The bundle is ids and hashes in git, text under NEBULALM_DATA_DIR.
+hashes them. The bundle is ids and hashes in git, text under ASTROLM_DATA_DIR.
 
   validation      every validation document
   probes          every probe document with its group (from the probe manifest)
@@ -21,9 +21,9 @@ import os
 import random
 from pathlib import Path
 
-from nebulalm.tokenizer.train import NebulaTokenizer
-from nebulalm.utils.hashing import sha256_file, sha256_text
-from nebulalm.utils.io import read_jsonl, read_yaml, write_json, write_jsonl
+from astrolm.tokenizer.train import AstroTokenizer
+from astrolm.utils.hashing import sha256_file, sha256_text
+from astrolm.utils.io import read_jsonl, read_yaml, write_json, write_jsonl
 
 ROOT = Path(__file__).resolve().parents[1]
 MEMBERSHIP = 500
@@ -31,7 +31,7 @@ EXTRACTION = 500
 
 
 def data_dir() -> Path:
-    return Path(os.environ.get("NEBULALM_DATA_DIR", ROOT / "data")) / "corpus"
+    return Path(os.environ.get("ASTROLM_DATA_DIR", ROOT / "data")) / "corpus"
 
 
 def main() -> None:
@@ -41,7 +41,7 @@ def main() -> None:
     seeds = read_yaml(ROOT / "configs" / "seeds.yaml")
     rng = random.Random(int(seeds["evaluation"]))
     clean = data_dir() / "clean"
-    tokenizer = NebulaTokenizer.from_file(args.tokenizer / "tokenizer.json", "")
+    tokenizer = AstroTokenizer.from_file(args.tokenizer / "tokenizer.json", "")
     train = sorted(read_jsonl(clean / "train.jsonl"), key=lambda row: row["document_id"])
     validation = sorted(read_jsonl(clean / "validation.jsonl"), key=lambda row: row["document_id"])
     probes = {row["document_id"]: row for row in read_jsonl(clean / "probe.jsonl")}

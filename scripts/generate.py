@@ -17,11 +17,11 @@ from pathlib import Path
 
 import torch
 
-from nebulalm.model.sampling import generate, load_run
-from nebulalm.tokenizer.train import NebulaTokenizer
+from astrolm.model.sampling import generate, load_run
+from astrolm.tokenizer.train import AstroTokenizer
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = Path(os.environ.get("NEBULALM_WORK_DIR", ROOT))
+WORK = Path(os.environ.get("ASTROLM_WORK_DIR", ROOT))
 
 
 def main() -> None:
@@ -42,7 +42,7 @@ def main() -> None:
 
     run = Path(args.run) if Path(args.run).exists() else WORK / "runs" / args.run
     model, path = load_run(run, args.device)
-    tokenizer = NebulaTokenizer.from_file(args.tokenizer / "tokenizer.json", "")
+    tokenizer = AstroTokenizer.from_file(args.tokenizer / "tokenizer.json", "")
     if tokenizer.vocab_size() != model.shape.vocab_size:
         raise SystemExit("tokenizer and checkpoint vocabularies differ")
     generator = torch.Generator(device=args.device).manual_seed(args.seed)

@@ -5,14 +5,14 @@ import numpy as np
 import pytest
 import torch
 
-from nebulalm.model.config import ModelShape
-from nebulalm.model.transformer import NebulaLM
-from nebulalm.packing.packer import pack_documents, write_shard
-from nebulalm.training.checkpoint import latest_valid, load_checkpoint, save_checkpoint, step_path
-from nebulalm.training.data import EpochSampler, ShardWindows
-from nebulalm.training.optimizer import build_optimizer
-from nebulalm.training.schedule import branch_schedule, cosine_multiplier, multiplier, wsd_multiplier
-from nebulalm.training.trainer import Trainer, run
+from astrolm.model.config import ModelShape
+from astrolm.model.transformer import AstroLM
+from astrolm.packing.packer import pack_documents, write_shard
+from astrolm.training.checkpoint import latest_valid, load_checkpoint, save_checkpoint, step_path
+from astrolm.training.data import EpochSampler, ShardWindows
+from astrolm.training.optimizer import build_optimizer
+from astrolm.training.schedule import branch_schedule, cosine_multiplier, multiplier, wsd_multiplier
+from astrolm.training.trainer import Trainer, run
 
 SHAPE = ModelShape(name="tiny", n_layer=2, n_head=2, d_model=32, d_mlp=64, context_length=256, vocab_size=40, dropout=0.1)
 OPT = {"peak_lr": 3e-3, "betas": [0.9, 0.95], "weight_decay": 0.1}
@@ -34,7 +34,7 @@ def _shard(tmp_path: Path, documents: int = 24, name: str = "train.bin") -> Path
 def _trainer(path: Path, schedule: dict, *, microbatch=2, accumulation=2, seed=3, dropout=None) -> Trainer:
     shape = SHAPE if dropout is None else ModelShape(**{**SHAPE.__dict__, "dropout": dropout})
     torch.manual_seed(seed)
-    model = NebulaLM(shape, seed=17014)
+    model = AstroLM(shape, seed=17014)
     windows = ShardWindows([path])
     return Trainer(
         model, build_optimizer(model, OPT), schedule, windows, EpochSampler(len(windows), seed=11),

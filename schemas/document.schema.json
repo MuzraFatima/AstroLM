@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://nebulalm.local/schemas/document.schema.json",
-  "title": "NebulaLM document manifest record",
+  "$id": "https://astrolm.local/schemas/document.schema.json",
+  "title": "AstroLM document manifest record",
   "type": "object",
   "additionalProperties": false,
   "required": [

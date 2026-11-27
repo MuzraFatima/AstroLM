@@ -21,13 +21,13 @@ import subprocess
 import sys
 from pathlib import Path
 
-from nebulalm.utils.io import read_json, read_yaml, write_json
+from astrolm.utils.io import read_json, read_yaml, write_json
 
 ROOT = Path(__file__).resolve().parents[1]
 # Runs and shards are large; they live outside the repository (and outside any synced folder).
-WORK = Path(os.environ.get("NEBULALM_WORK_DIR", ROOT))
+WORK = Path(os.environ.get("ASTROLM_WORK_DIR", ROOT))
 RUNS = WORK / "runs"
-SIZES = {"4m": "small_4m.yaml", "10m": "smaller_transformer.yaml", "29m": "nebulalm.yaml"}
+SIZES = {"4m": "small_4m.yaml", "10m": "smaller_transformer.yaml", "29m": "astrolm.yaml"}
 LR_RECORD = ROOT / "experiments" / "records" / "EXP-LR.json"
 # Create this file to stop the queue cleanly after the run in progress finishes.
 STOP_FILE = WORK / "runs" / "STOP"

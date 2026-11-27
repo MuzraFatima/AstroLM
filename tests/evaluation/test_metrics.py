@@ -2,10 +2,10 @@ import math
 
 import torch
 
-from nebulalm.baselines.ngram import AddKNgram
-from nebulalm.evaluation.metrics import metric_block
-from nebulalm.model.config import load_shape
-from nebulalm.model.probe import SliceProbe
+from astrolm.baselines.ngram import AddKNgram
+from astrolm.evaluation.metrics import metric_block
+from astrolm.model.config import load_shape
+from astrolm.model.probe import SliceProbe
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -17,8 +17,8 @@ def test_bits_per_byte_matches_hand_calculation():
     assert abs(block["bits_per_byte"] - 0.25) < 1e-12
 
 
-def test_nebulalm_formula_matches_manual_count():
-    shape = load_shape(ROOT / "configs" / "model" / "nebulalm.yaml")
+def test_astrolm_formula_matches_manual_count():
+    shape = load_shape(ROOT / "configs" / "model" / "astrolm.yaml")
     assert shape.parameter_count() == 29_447_168
 
 

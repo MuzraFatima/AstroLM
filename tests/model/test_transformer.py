@@ -3,17 +3,17 @@ from pathlib import Path
 import pytest
 import torch
 
-from nebulalm.model.config import ModelShape, load_shape
-from nebulalm.model.transformer import NebulaLM, attention_mask, reference_attention
-from nebulalm.training.optimizer import parameter_groups
+from astrolm.model.config import ModelShape, load_shape
+from astrolm.model.transformer import AstroLM, attention_mask, reference_attention
+from astrolm.training.optimizer import parameter_groups
 
 ROOT = Path(__file__).resolve().parents[2]
 TINY = ModelShape(name="tiny", n_layer=2, n_head=4, d_model=32, d_mlp=64, context_length=16, vocab_size=50, dropout=0.0)
 
 
-def _model(dropout: float = 0.0) -> NebulaLM:
+def _model(dropout: float = 0.0) -> AstroLM:
     shape = ModelShape(**{**TINY.__dict__, "dropout": dropout})
-    return NebulaLM(shape, seed=17014)
+    return AstroLM(shape, seed=17014)
 
 
 @pytest.mark.parametrize("batch,time", [(1, 1), (2, 7), (3, 16)])
@@ -96,18 +96,18 @@ def test_context_overflow_raises():
         _model()(torch.zeros(1, 17, dtype=torch.long))
 
 
-@pytest.mark.parametrize("config", ["nebulalm.yaml", "smaller_transformer.yaml", "small_4m.yaml"])
+@pytest.mark.parametrize("config", ["astrolm.yaml", "smaller_transformer.yaml", "small_4m.yaml"])
 def test_instantiated_count_matches_the_formula(config):
     shape = load_shape(ROOT / "configs" / "model" / config, vocab_size=8000)
-    model = NebulaLM(shape, seed=17014)
+    model = AstroLM(shape, seed=17014)
     assert model.parameter_count() == shape.parameter_count()
 
 
 def test_planned_sizes_at_8000_vocab():
     counts = {
         name: load_shape(ROOT / "configs" / "model" / name, vocab_size=8000).parameter_count()
-        for name in ("small_4m.yaml", "smaller_transformer.yaml", "nebulalm.yaml")
+        for name in ("small_4m.yaml", "smaller_transformer.yaml", "astrolm.yaml")
     }
     assert 4.0e6 < counts["small_4m.yaml"] < 5.0e6
     assert 9.5e6 < counts["smaller_transformer.yaml"] < 11.0e6
-    assert 29.0e6 < counts["nebulalm.yaml"] < 30.0e6
+    assert 29.0e6 < counts["astrolm.yaml"] < 30.0e6
